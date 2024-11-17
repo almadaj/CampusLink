@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_action :authorize_request
   def index
     @students = Student.all
     render json: @students

@@ -1,4 +1,5 @@
 class InternshipsController < ApplicationController
+  before_action :authorize_request
   def index
     @internships = Internship.all
     render json: @internships

@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_action :authorize_request
   def index
     @companies = Company.all
     render json: @companies

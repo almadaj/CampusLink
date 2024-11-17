@@ -1,16 +1,21 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   skip_before_action :verify_authenticity_token
-  before_action :authorize_request
 
   private
 
   def authorize_request
     header = request.headers["Authorization"]
-    header = header.split(" ").last if header
-    decoded = JsonWebToken.decode(header)
-    @current_user = User.find(decoded[:user_id]) if decoded
-  rescue ActiveRecord::RecordNotFound, JWT::DecodeError
+    puts "Header: #{header}"
+    if header
+      token = header.split(" ").last
+      decoded = JsonWebToken.decode(token)
+      @current_user = User.find(decoded[:user_id]) if decoded
+    else
+      render json: { error: "Não autorizado" }, status: :unauthorized
+    end
+  rescue ActiveRecord::RecordNotFound, JWT::DecodeError => e
+    Rails.logger.error "JWT Decode Error: #{e.message}"
     render json: { error: "Não autorizado" }, status: :unauthorized
   end
 end
