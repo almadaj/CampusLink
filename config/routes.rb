@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   get "students/:id/internships", to: "students#internships_by_student"
   get "companies/:id/interns", to: "companies#interns_by_company"
+  post "login", to: "sessions#create"
+  post "signup", to: "users#create"
 end
