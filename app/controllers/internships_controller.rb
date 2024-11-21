@@ -1,5 +1,6 @@
 class InternshipsController < ApplicationController
   before_action :authorize_request
+  before_action :authorize_admin, only: [ :create, :update, :destroy ]
   def index
     @internships = Internship.all
     render json: @internships

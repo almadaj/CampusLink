@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
   def authorize_request
     header = request.headers["Authorization"]
-    puts "Header: #{header}"
     if header
       token = header.split(" ").last
       decoded = JsonWebToken.decode(token)
@@ -17,5 +16,11 @@ class ApplicationController < ActionController::Base
   rescue ActiveRecord::RecordNotFound, JWT::DecodeError => e
     Rails.logger.error "JWT Decode Error: #{e.message}"
     render json: { error: "Não autorizado" }, status: :unauthorized
+  end
+
+  def authorize_admin
+    unless @current_user.role == 1
+      render json: { error: "Não autorizado, área de administrador" }, status: :unauthorized
+    end
   end
 end
