@@ -10,6 +10,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    user = User.find(params[:id])
+    if user.update(user_params)
+      render json: { message: "Usuário atualizado com sucesso", user: user.slice(:id, :name, :email, :registration, :role) }
+    else
+      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_params
