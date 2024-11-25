@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get "companies/:id/interns", to: "companies#interns_by_company"
   post "login", to: "sessions#create"
   post "signup", to: "users#create"
+  put "users/:id", to: "users#update"
+  put "users/:id/admin", to: "users#toggle_admin"
 end
