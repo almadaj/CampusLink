@@ -12,14 +12,16 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    if user_params.key?(:role) && current_user.role != 1
-      return render json: { errors: [ "Você não tem permissão para alterar o papel do usuário" ] }, status: :forbidden
-    end
     if user.update(user_params.except(:role))
       render json: { message: "Usuário atualizado com sucesso", user: user.slice(:id, :name, :email, :registration, :role) }
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
+    render json: @user.slice(:id, :name, :email, :registration, :role)
   end
 
   def toggle_admin

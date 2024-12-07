@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   post "signup", to: "users#create"
   put "users/:id", to: "users#update"
+  get "users/:id", to: "users#show"
   put "users/:id/admin", to: "users#toggle_admin"
 end
