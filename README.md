@@ -1,11 +1,10 @@
-# README
+# CampusLink
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Wait... There's a software being built
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: Ruby 3.1.0 or higher
 
 * System dependencies
 
