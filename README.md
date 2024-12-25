@@ -1,6 +1,7 @@
 # CampusLink
 
-Wait... There's a software being built
+Este projeto é uma plataforma para gerenciar estágios de estudantes da Unichristus, facilitando a integração entre alunos, empresas e a Universidade. A plataforma também oferece ferramentas de acompanhamento de progresso e relatórios gerenciais.
+
 
 ## Tecnologias Usadas
 * Ruby on Rails
@@ -31,21 +32,25 @@ Wait... There's a software being built
      rails db:migrate
      rails db:seed
      ```
-3. **Configuração do Banco de Dados com Docker (opcional)**
+2. **Configuração do Banco de Dados com Docker (opcional)**
 
    - Crie o banco de dados e rode as migrations com o seguinte comando:
      ```bash
         docker run --name campuslink_dev -e POSTGRES_PASSWORD=(SUASENHA) -e POSTGRES_DB=campuslink_dev -p 5432:5432 -d postgres
      ```
+     ```bash
+     rails db:migrate
+     rails db:seed
+     ```
 
-4. **Configurações de Variáveis de Ambiente**
+3. **Configurações de Variáveis de Ambiente**
 
    - Insira suas credenciais em:
      ```bash
         config/database.yml
      ```
 
-5. **Rodando o Projeto**
+4. **Rodando o Projeto**
 
    - Inicie o Servidor Rails:
      ```bash
