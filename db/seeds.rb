@@ -41,7 +41,7 @@ courses = [
 def generate_student_number
   year = Time.now.year.to_s[2..3]
   semester = rand(1..2)
-  random_number = rand(10000..99999)
+  random_number = rand(100000..999999)
   "#{year}#{semester}#{random_number}"
 end
 
