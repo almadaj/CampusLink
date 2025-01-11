@@ -73,8 +73,8 @@ end
     student_id: students.sample,
     salary: rand(300..2000),
     workload: [ 20, 30 ].sample,
-    start_date: Faker::Date.between(from: 2.years.ago, to: Date.today),
-    end_date: [ nil, Faker::Date.between(from: 2.years.ago, to: Date.today) ].sample
+    start_date: Faker::Date.between(from: 5.months.ago, to: Date.today),
+    end_date: [ nil, Faker::Date.between(from: start_date, to: Date.today) ].sample
   )
 end
 
