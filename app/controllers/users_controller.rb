@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all
+    render json: @users
+  end
+
   def update
     user = User.find(params[:id])
     if user.update(user_params.except(:role))
