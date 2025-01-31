@@ -23,9 +23,9 @@ class InternshipsController < ApplicationController
   def update
     @internship = Internship.find(params[:id])
     if @internship.update(internship_params)
-      render json @internship
+      render json: @internship
     else
-      render json @internship.errors, status: :unprocessable_entity
+      render json: @internship.errors, status: :unprocessable_entity
     end
   end
 

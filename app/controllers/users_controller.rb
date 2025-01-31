@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user.slice(:id, :name, :email, :registration, :role)
+    render json: @user.slice(:id, :name, :email, :registration, :role, :created_at)
   end
 
   def toggle_admin
