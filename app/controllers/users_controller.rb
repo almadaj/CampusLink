@@ -29,6 +29,27 @@ class UsersController < ApplicationController
     render json: @user.slice(:id, :name, :email, :registration, :role, :created_at)
   end
 
+  def upload_photo
+    user = User.find(params[:id])
+
+    if params[:file].present?
+      user.update(photo: params[:file].read)
+      render json: { message: "Foto de perfil atualizada com sucesso!" }, status: :ok
+    else
+      render json: { error: "Nenhum arquivo enviado" }, status: :unprocessable_entity
+    end
+  end
+
+  def get_photo
+    user = User.find(params[:id])
+
+    if user.photo.present?
+      send_data user.photo, type: "image/jpeg", disposition: "inline"
+    else
+      render json: { error: "Foto não encontrada" }, status: :not_found
+    end
+  end
+
   def toggle_admin
     user = User.find(params[:id])
     if @current_user.role == 1
